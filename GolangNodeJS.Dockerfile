@@ -31,4 +31,4 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key 
     apt-get update && apt-get install -y nodejs yarn &&\
     apt-get autoclean && apt-get autoremove &&\
     rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
-CMD {"bash"}
+CMD {"/bin/bash"}
