@@ -36,7 +36,7 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key 
     apt-get autoclean && apt-get autoremove &&\
     rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 
-ENV NVM_DIR /usr/local/nvm
+ENV NVM_DIR /opt/nvm
 ENV NODE_VERSION 10.11
 
 # Install nvm with node and npm
