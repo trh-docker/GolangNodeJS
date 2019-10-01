@@ -41,7 +41,8 @@ ENV NODE_VERSION 10.11
 
 # Install nvm with node and npm
 ADD files/nvm_install.sh /opt/tmp/
-RUN /opt/tmp/nvm_install.sh | bash \
+RUN chmod +x /opt/tmp/nvm_install.sh \
+    && /opt/tmp/nvm_install.sh | bash \
     && source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
