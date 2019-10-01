@@ -1,6 +1,9 @@
-FROM quay.io/spivegin/tlmbasedebian
+FROM quay.io/spivegin/tlmbasedebian:latest as base
 
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN rm /bin/sh && cp /bin/bash /bin/sh
+
+FROM base
+
 RUN mkdir /opt/tmp /opt/src
 ENV GOPATH=/opt/src/ \
     GOBIN=/opt/go/bin \
@@ -38,4 +41,4 @@ RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> 
 RUN echo '[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion' >> "$HOME/.bashrc"
 
 
-CMD {"/bin/bash"}
+#CMD {"/bin/bash"}
