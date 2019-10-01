@@ -1,6 +1,6 @@
 FROM quay.io/spivegin/tlmbasedebian
 
-
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN mkdir /opt/tmp /opt/src
 ENV GOPATH=/opt/src/ \
     GOBIN=/opt/go/bin \
