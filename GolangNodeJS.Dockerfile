@@ -32,14 +32,16 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key 
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&\
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list &&\
     apt-get update && apt-get install -y nodejs yarn &&\
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash &&\
     apt-get autoclean && apt-get autoremove &&\
     rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
 
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 12.11
+ENV NODE_VERSION 10.11
 
-# Install nvm 
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash \
+# Install nvm with node and npm
+ADD files/nvm_install.sh /opt/tmp/
+RUN /opt/tmp/nvm_install.sh | bash \
     && source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
